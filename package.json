@@ -1,0 +1,17 @@
+{
+  "name": "teams-with-secret-window",
+  "title": "Teams with Secret Window",
+  "description": "Teamsの会議に素早くシークレットウインドウで参加するためだけのコマンド",
+  "author": "bun913",
+  "license": "MIT",
+  "dependencies": {
+    "playwright": "^1.41.2"
+  },
+  "scripts": {
+    "build": "tsc app.ts"
+  },
+  "devDependencies": {
+    "tsc": "^2.0.4",
+    "typescript": "^5.3.3"
+  }
+}
