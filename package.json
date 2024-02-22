@@ -8,10 +8,9 @@
     "playwright": "^1.41.2"
   },
   "scripts": {
-    "build": "tsc app.ts"
+    "build": "tsc"
   },
   "devDependencies": {
-    "tsc": "^2.0.4",
     "typescript": "^5.3.3"
   }
 }
