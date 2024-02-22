@@ -17,18 +17,19 @@
 - Raycastから`Teams on Secret` のコマンドを呼び出してください
 - `Teams会議のURLを入力`と書かれるテキストボックスに招待されたTeamsnのURLを入力してください
 
-画像
+![input url](./docs/images/teams_on_secret_input_url.jpg)
 
 - エンターを押下することでシークレットウインドウでChromeブラウザが開き、各種入力を自動化してくれます
+    - 赤枠で囲った部分を自動入力・自動で有効化します
 
-画像
+![auto fill](./docs/images/teams-on-secret-auto-input.jpg)
 
 ## Raycastからコマンドを実行できるようになるまで
 
 - 本リポジトリを任意の場所に`git clone` してください
 - クローンしたディレクトリに`cd`で移動してください
 - `npm install` を実行してください
-    - 実行後に`node_modules` ディレクトリが割く際されていることを確認してください
+    - 実行後に`node_modules` ディレクトリが作成されていることを確認してください
 - `npx playwright install` コマンドを実行して、ブラウザ操作自動化に必要な依存関係をインストールしてください
 - src/browserOperation.ts の `ここにあなたの名前を入れてください` という場所にTeams会議で表示したい名前を入力してください
 - `npx tsc` もしくは `npm run build` を実行してアプリケーションをビルドしてください
