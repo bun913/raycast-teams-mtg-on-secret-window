@@ -19,4 +19,3 @@ yarn-error.log*
 # development tools
 .idea
 .vscode
-tsconfig.json
