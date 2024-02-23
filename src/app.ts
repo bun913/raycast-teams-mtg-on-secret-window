@@ -1,9 +1,16 @@
+import { z } from "zod";
 import { BrowserOperation } from "./browserOperation";
 import * as playwright from "playwright";
 
 const main = async () => {
   // temasURLをコマンドライン引数から取得
   const teamsUrl = process.argv[2];
+  // validation
+  try {
+    z.string().url().parse(teamsUrl);
+  } catch (e) {
+    process.exit(1);
+  }
   const browser = await playwright.chromium.launch({
     channel: "chrome",
     headless: false,
@@ -22,7 +29,7 @@ const main = async () => {
   browser.on("disconnected", () => {
     // 正常終了する
     process.exit(0);
-  })
+  });
 };
 
 if (require.main === module) {
