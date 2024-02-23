@@ -5,7 +5,8 @@
   "author": "bun913",
   "license": "MIT",
   "dependencies": {
-    "playwright": "^1.41.2"
+    "playwright": "^1.41.2",
+    "zod": "^3.22.4"
   },
   "scripts": {
     "build": "tsc"
