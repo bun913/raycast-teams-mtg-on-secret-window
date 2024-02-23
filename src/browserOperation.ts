@@ -31,8 +31,18 @@ export class BrowserOperation {
   }
 
   async openAndFillTeamsWindow() {
+    // 所定のURLに遷移するまで待つ
     // TeamsのURLを開く
     await this.page.goto(this.teamsUrl);
+    if (this.teamsUrl.startsWith("https://teams.microsoft.com/dl/") === false) {
+      // https://teams.microsoft.com/dl/まで遷移するまで待つ
+      await this.page.goto(this.teamsUrl);
+      await this.page.waitForLoadState("networkidle");
+      const dlUrl = this.toggleMsLaunchParameterNeeded(this.page.url());
+      // プロンプトが表示されないようにパラメーターを変更して再度遷移する
+      await this.page.goto("about:blank");
+      await this.page.goto(dlUrl);
+    }
     // 「このブラウザーから会議に参加します」をクリック
     const buttonSelector = 'button[data-tid="joinOnWeb"]';
     await this.page.waitForSelector(buttonSelector);
