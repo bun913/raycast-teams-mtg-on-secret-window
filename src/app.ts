@@ -20,6 +20,7 @@ const main = async () => {
     permissions: ["microphone", "camera"],
   });
   const page = await context.newPage();
+  page.setDefaultTimeout(0);
   const browserOperation = new BrowserOperation({
     teamsUrl: teamsUrl,
     browser,
