@@ -14,6 +14,7 @@ const main = async () => {
   const browser = await playwright.chromium.launch({
     channel: "chrome",
     headless: false,
+    timeout: 0,
   });
   const context = await browser.newContext({
     permissions: ["microphone", "camera"],
