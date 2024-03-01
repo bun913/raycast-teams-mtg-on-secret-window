@@ -14,6 +14,14 @@
 
 ## 利用方法のイメージ
 
+まずMacの場合、以下のコマンドでChromeをオプション付きで呼び出します。
+
+```bash
+/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --remote-debugging-port=9222 --incognito
+```
+
+この開いたブラウザに対して、このパッケージで自動操作を行います。
+
 - Raycastから`Teams on Secret` のコマンドを呼び出してください
 - `Teams会議のURLを入力`と書かれるテキストボックスに招待されたTeamsnのURLを入力してください
 
