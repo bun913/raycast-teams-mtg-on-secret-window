@@ -1,23 +1,17 @@
 import * as playwright from "playwright";
 
 export interface BrowserOperationArgs {
-  browser: playwright.Browser;
-  context: playwright.BrowserContext;
   page: playwright.Page;
   teamsUrl: string;
 }
 
 export class BrowserOperation {
   private readonly teamsUrl: string;
-  private browser: playwright.Browser;
-  private context: playwright.BrowserContext;
   private page: playwright.Page;
-  YOUR_NAME = "ここにあなたの名前を入れてください";
+  YOUR_NAME = "ここにあなたの名前を入力してください";
 
-  constructor({ teamsUrl, browser, context, page }: BrowserOperationArgs) {
+  constructor({ teamsUrl, page }: BrowserOperationArgs) {
     this.teamsUrl = this.toggleMsLaunchParameterNeeded(teamsUrl);
-    this.browser = browser;
-    this.context = context;
     this.page = page;
   }
 
