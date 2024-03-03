@@ -1,23 +1,17 @@
 import * as playwright from "playwright";
 
 export interface BrowserOperationArgs {
-  browser: playwright.Browser;
-  context: playwright.BrowserContext;
   page: playwright.Page;
   teamsUrl: string;
 }
 
 export class BrowserOperation {
   private readonly teamsUrl: string;
-  private browser: playwright.Browser;
-  private context: playwright.BrowserContext;
   private page: playwright.Page;
   YOUR_NAME = "ここにあなたの名前を入れてください";
 
-  constructor({ teamsUrl, browser, context, page }: BrowserOperationArgs) {
+  constructor({ teamsUrl, page }: BrowserOperationArgs) {
     this.teamsUrl = this.toggleMsLaunchParameterNeeded(teamsUrl);
-    this.browser = browser;
-    this.context = context;
     this.page = page;
   }
 
@@ -51,6 +45,16 @@ export class BrowserOperation {
     const nameInputSelector = 'input[data-tid="prejoin-display-name-input"]';
     await this.page.waitForSelector(nameInputSelector);
     await this.page.fill(nameInputSelector, this.YOUR_NAME);
+    // ビデオを表示する設定がオフの場合、ビデオを表示する
+    const videoSettingSelector = 'div[data-tid="toggle-video"]';
+    await this.page.waitForSelector(videoSettingSelector);
+    // チェックが入っていない場合はチェックを入れる
+    if (
+      (await this.page.getAttribute(videoSettingSelector, "aria-checked")) ===
+      "false"
+    ) {
+      await this.page.click(videoSettingSelector);
+    }
     // 背景の設定をクリック
     const backgroundSettingSelector =
       'button[data-tid="button-custom-video-backgrounds"]';
