@@ -8,7 +8,7 @@ export interface BrowserOperationArgs {
 export class BrowserOperation {
   private readonly teamsUrl: string;
   private page: playwright.Page;
-  YOUR_NAME = "ここにあなたの名前を入力してください";
+  YOUR_NAME = "ここにあなたの名前を入れてください";
 
   constructor({ teamsUrl, page }: BrowserOperationArgs) {
     this.teamsUrl = this.toggleMsLaunchParameterNeeded(teamsUrl);
@@ -45,6 +45,16 @@ export class BrowserOperation {
     const nameInputSelector = 'input[data-tid="prejoin-display-name-input"]';
     await this.page.waitForSelector(nameInputSelector);
     await this.page.fill(nameInputSelector, this.YOUR_NAME);
+    // ビデオを表示する設定がオフの場合、ビデオを表示する
+    const videoSettingSelector = 'div[data-tid="toggle-video"]';
+    await this.page.waitForSelector(videoSettingSelector);
+    // チェックが入っていない場合はチェックを入れる
+    if (
+      (await this.page.getAttribute(videoSettingSelector, "aria-checked")) ===
+      "false"
+    ) {
+      await this.page.click(videoSettingSelector);
+    }
     // 背景の設定をクリック
     const backgroundSettingSelector =
       'button[data-tid="button-custom-video-backgrounds"]';
